@@ -16,113 +16,58 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
     SetGraphMode(WIDTH, HEIGHT, 32); // 画面サイズ設定
     SetWaitVSyncFlag(TRUE); // 垂直同期を有効にする
 
-    float wireAngle = 0.0F; // 十字を書かないといけないらしい
-
     // DXライブラリ初期化処理
     if(DxLib_Init() == -1) {
         return -1; // エラーが起きたら直ちに終了
     }
 
     // 円の初期化
-    CircleManager circle[2] {
-        CircleManager(Vector2(200, HEIGHT / 1.2), 25),
-        CircleManager(Vector2(WIDTH / 2, HEIGHT / 1.2), 50)
-        //CircleManager(Vector2(WIDTH - 200, HEIGHT / 1.2), 50)
+    CircleManager circle[3] {
+        CircleManager(Vector2(WIDTH / 2.0F, HEIGHT / 2.0F), 25),
+        CircleManager(Vector2(WIDTH / 2.0F + 100.0F, HEIGHT / 2.0F - 50.0F), 25),
+        CircleManager(Vector2(WIDTH / 2.0F + 150.0F, HEIGHT / 2.0F), 25)
     };
 
     //##### メインループ（描画処理） #####//
     while(ProcessMessage() == 0) {
         ClearDrawScreen(); // 画面の更新
 
-        printfDx("Hello World!");
+        printfDx("Hello World!\n\n");
 
         // 今操作している円の過去座標に現在座標を書き込む
-        circle[circleState].posPrevious = circle[circleState].posNow;
+        circle[2].posPrevious = circle[2].posNow;
 
         // キーに入力があれば移動処理
+        // Up or W
+        if(CheckHitKey(KEY_INPUT_UP) || CheckHitKey(KEY_INPUT_W)) {
+            circle[2].posNow.y -= 5;
+        }
         // Left or A
         if(CheckHitKey(KEY_INPUT_LEFT) || CheckHitKey(KEY_INPUT_A)) {
-            circle[circleState].posNow.x -= 5;
+            circle[2].posNow.x -= 5;
+        }
+        // Down or S
+        if(CheckHitKey(KEY_INPUT_DOWN) || CheckHitKey(KEY_INPUT_S)) {
+            circle[2].posNow.y += 5;
         }
         // Right or D
         if(CheckHitKey(KEY_INPUT_RIGHT) || CheckHitKey(KEY_INPUT_D)) {
-            circle[circleState].posNow.x += 5;
+            circle[2].posNow.x += 5;
         }
 
-        // 円の描画と移動・計算などなど
+        // 仮でまずは円の座標が見たいので描画をしておく。
         for(int i = 0; i < COUNTOF(circle); i++) {
-            // 今操作している円に色々やる
-            if(circleState == i) {
-                // 相対座標を取り出す
-                circle[i].distance = getVectorDistanceSign(circle[i].posNow, circle[i].posPrevious);
+            DrawCircle(circle[i].posNow.x, circle[i].posNow.y, circle[i].radial, white, TRUE);
 
-                // 角速度を取り出す
-                circle[i].angularVelocity = PI * circle[i].distance / (circle[i].R() * PI);
-
-                // 累積角度に角速度を加算する
-                circle[i].cumulativeAngle += circle[i].angularVelocity;
-
-                //
-                circle[i].posVectorEnd = circle[i].posNow;
-            }
-
-            // 円の中に線を描画するよ
-            for (int j = 0; j < 2 * COUNTOF(circle); j++) {
-                // 基準線より上に描画したいので補正する
-                circle[i].posNow.y -= circle[i].R();
-
-                // 末端座標
-                circle[i].posVectorEnd.x = circle[i].posNow.X() + (sin(circle[i].cumulativeAngle + wireAngle) * circle[i].R());
-                circle[i].posVectorEnd.y = circle[i].posNow.Y() + (cos(circle[i].cumulativeAngle + wireAngle) * circle[i].R());
-
-                // 十字線の描画
-                DrawLine(circle[i].posNow.X(), circle[i].posNow.Y(), circle[i].posVectorEnd.X(), circle[i].posVectorEnd.Y(), white);
-
-                // 補正して計算したので元に戻す
-                circle[i].posNow.y += circle[i].R();
-
-                // 末端を中央座標に
-                circle[i].posVectorEnd = circle[i].posNow;
-
-                // 角度の更新
-                wireAngle += 1.57F;
-            }
-
-            // 角度の初期化
-            wireAngle = 0.0F;
+            // ついでにその数値も描画しておく
+            printfDx("circle[%d].posNow.x = %.2f\n", i, circle[i].posNow.x);
+            printfDx("circle[%d].posNow.y = %.2f\n", i, circle[i].posNow.y);
         }
 
-        // 接触しましたか？
-        for(int i = 0; i < COUNTOF(circle); i++) {
-            // 当たっていたら続行
-            if(circleState == i) continue;
-            // 接触したら
-            if(hitCheck(circle[i].posNow, circle[i].R(), circle[!i].posNow, circle[!i].R())) {
-                // 今操作している円を変更する 0, 1, 2 ... と対応できるようにする。
-                circleState = i;
-                //circleState = !circleState;
-
-                // 今操作している円の色を変更する
-                circle[i].hit = true;
-                break;
-            }
-            else {
-                // 今操作している円の色を変更する
-                circle[i].hit = false;
-            }
-        }
-
-        // 描画しましょう
-        for(int i = 0; i < COUNTOF(circle); i++) {
-            // 接触している円の色を変更する
-            if(circle[i].hit)
-                DrawCircle(circle[i].posNow.X(), circle[i].posNow.Y() - circle[i].R(), circle[i].R(), red, FALSE);
-            else
-                DrawCircle(circle[i].posNow.X(), circle[i].posNow.Y() - circle[i].R(), circle[i].R(), white, FALSE);
-        }
-
-        // 基準線
-        DrawLine(0, HEIGHT / 1.2, WIDTH, HEIGHT / 1.2, white);
+        // 始点と中間点の座標間を結ぶ線を描画
+        DrawLine(circle[0].posNow.x, circle[0].posNow.y, circle[1].posNow.x, circle[1].posNow.y, white);
+        // 中間点と終点の座標間を結ぶ線を描画
+        DrawLine(circle[1].posNow.x, circle[1].posNow.y, circle[2].posNow.x, circle[2].posNow.y, white);
 
         //Sleep(10); // 遅延させる
 

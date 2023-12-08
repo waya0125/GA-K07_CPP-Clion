@@ -23,7 +23,7 @@
 /// 注意     : なし
 class CircleManager {
 public:
-    bool hit = false;           // 接触しているかどうか
+    //bool hit = false;           // 接触しているかどうか
     float radial;               // 半径
     float distance = 0;         // 移動距離
     float angularVelocity = 0;  // 角速度

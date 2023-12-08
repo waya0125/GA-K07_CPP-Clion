@@ -6,18 +6,19 @@
 #define PI 3.14F
 #define COUNTOF(array) (sizeof(array) / sizeof(array[0])) // 配列の要素数をカウントする. Powered by KOBAYASHI Atsuki.
 
+//##### 色の設定 #####//
 unsigned int white = GetColor(255,255,255);
 unsigned int red = GetColor(255,0,0);
 unsigned int black = GetColor(0,0,0);
+
+//##### OLD FUNCTION #####//
 int circleState = 0;
 
-float Distance2(Vector2 v1, Vector2 v2) {
-    Vector2 v3 = {v1.X() - v2.X(), v1.Y() - v2.Y()};
-    if((v1.x - v2.x) > 0) {
-        return sqrt(v3.X() * v3.X() + v3.Y() * v3.Y());
-    } else {
-        return -sqrt(v3.X() * v3.X() + v3.Y() * v3.Y());
-    }
-}
+//##### LATEST FUNCTION #####//
+float firstArmLength = 100.0F;     // 第一関節の長さ
+float secondArmLength = 50.0F;     // 第二関節の長さ
+float startAndEndLength = firstArmLength + secondArmLength; // 始点と終点の長さは第一関節と第二関節の長さの合計
+Vector2 startArmPos = {0, 0}; // 始点の座標
+Vector2 endArmPos = {100, 0};   // 終点の座標
 
 #endif //GA_04_CPP_CLION_OPTION_H

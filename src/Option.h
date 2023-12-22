@@ -11,4 +11,8 @@ unsigned int white = GetColor(255,255,255);
 unsigned int red = GetColor(255,0,0);
 unsigned int black = GetColor(0,0,0);
 
+//##### •Ï”İ’è #####//
+float firstArmLength = 100.0F; // ‘æˆêŠÖß‚Ì’·‚³
+float secondArmLength = 50.0F; // ‘æ“ñŠÖß‚Ì’·‚³
+
 #endif //GA_04_CPP_CLION_OPTION_H

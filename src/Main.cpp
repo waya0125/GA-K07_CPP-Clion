@@ -21,9 +21,6 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
         return -1; // エラーが起きたら直ちに終了
     }
 
-    float firstArmLength = 100.0F;     // 第一関節の長さ
-    float secondArmLength = 50.0F;     // 第二関節の長さ
-
     // 円の初期化
     // 0: 原点, 1: 始点, 2: 末端
     CircleManager circle[3] {
@@ -38,7 +35,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 
         printfDx("Hello World!\n\n");
 
-        // キーに入力があれば移動処理
+        //#### 移動処理 ####//
         // Up or W
         if(CheckHitKey(KEY_INPUT_UP) || CheckHitKey(KEY_INPUT_W)) {
             circle[2].posNow.y -= 5;
@@ -56,6 +53,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
             circle[2].posNow.x += 5;
         }
 
+        //#### 逆運動学 ####//
         // 末端の補正と関節計算に使用する変数の取得
         Vector2 startAndEndArmPos = {
             circle[2].posNow.x - circle[0].posNow.x,
@@ -69,6 +67,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
             startAndEndArmPos.y / startAndEndLength
         };
 
+        //#### 余弦定理 ####//
         // 余弦定理を使用して関節位置を計算する
         if (startAndEndLength > firstArmLength + secondArmLength) {
             // 末端の座標を補正する
@@ -102,7 +101,8 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
             circle[1].posNow.y = circle[0].posNow.y + startAndEndLengthVector.y * firstArmLength;
         }
 
-        // 仮でまずは円の座標が見たいので描画をしておく。
+        //#### 描画処理 ####//
+        // 円の描画
         for(int i = 0; i < COUNTOF(circle); i++) {
             DrawCircle(circle[i].posNow.x, circle[i].posNow.y, circle[i].radial, white, TRUE);
 
@@ -110,7 +110,6 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
             printfDx("circle[%d].posNow.x = %.2f\n", i, circle[i].posNow.x);
             printfDx("circle[%d].posNow.y = %.2f\n", i, circle[i].posNow.y);
         }
-
         // 始点と中間点の座標間を結ぶ線を描画
         DrawLine(circle[0].posNow.x, circle[0].posNow.y, circle[1].posNow.x, circle[1].posNow.y, white);
         // 中間点と終点の座標間を結ぶ線を描画

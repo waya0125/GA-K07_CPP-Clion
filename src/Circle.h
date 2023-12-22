@@ -1,38 +1,38 @@
 #ifndef GA_04_CPP_CLION_CIRCLE_H
 #define GA_04_CPP_CLION_CIRCLE_H
 
-//## ç’°å¢ƒã«å¿œã˜ã¦è¨­å®š
+//## ŠÂ‹«‚É‰‚¶‚Äİ’è
 #pragma once
 #include "DxLib.h"
 #include "Vector.h"
 
-/// <summary>##### å††ã‚¯ãƒ©ã‚¹ #####</summary><br>
-/// # ã§ãã‚‹ã“ã¨<br>
-/// <param>Circle(Vector2 pos, float r)</param>: Circleæ§‹é€ ä½“ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’ä½œæˆ<br>
-/// <param>ONTOUCHCOLOR</param>: ãƒãƒ¼ãƒ«ã«ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ãŒè§¦ã‚Œã¦ã„ã‚‹å ´åˆã®ã‚µãƒ¼ã‚¯ãƒ«ã®è‰²<br>
-/// <param>UNTOUCHCOLOR</param>: ãƒãƒ¼ãƒ«ã«ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ãŒè§¦ã‚Œã¦ã„ãªã„å ´åˆã®ã‚µãƒ¼ã‚¯ãƒ«ã®è‰²<br>
-/// <param>PI</param>: å††å‘¨ç‡<br>
-/// <param>float radial</param>: åŠå¾„ã‚’è¨­å®šãƒ»å–å¾—<br>
-/// <param>float Distance</param>: ç§»å‹•è·é›¢ã‚’è¨­å®šãƒ»å–å¾—<br>
-/// <param>float angularVelocity</param>: è§’é€Ÿåº¦ã‚’è¨­å®šãƒ»å–å¾—<br>
-/// <param>float cumulativeAngle</param>: ç´¯ç©è§’åº¦ã‚’è¨­å®šãƒ»å–å¾—<br>
-/// <param>Vector2 posNow(float x, float y)</param>: åº§æ¨™ã‚’è¨­å®šãƒ»å–å¾—<br>
-/// <param>Vector2 posPrevious(float x, float y)</param>: å‰å›ã®åº§æ¨™ã‚’è¨­å®šãƒ»å–å¾—<br>
-/// <param>Vector2 posVectorEnd(float x, float y)</param>: ãƒ™ã‚¯ãƒˆãƒ«ã®çµ‚ç‚¹åº§æ¨™ã‚’è¨­å®šãƒ»å–å¾—<br>
-/// å‚è€ƒæ–‡çŒ® : ãªã—<br>
-/// æ³¨æ„     : ãªã—
+/// <summary>##### ‰~ƒNƒ‰ƒX #####</summary><br>
+/// # ‚Å‚«‚é‚±‚Æ<br>
+/// <param>Circle(Vector2 pos, float r)</param>: Circle\‘¢‘Ì‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ğì¬<br>
+/// <param>ONTOUCHCOLOR</param>: ƒ|[ƒ‹‚ÉƒvƒŒƒCƒ„[‚ªG‚ê‚Ä‚¢‚éê‡‚ÌƒT[ƒNƒ‹‚ÌF<br>
+/// <param>UNTOUCHCOLOR</param>: ƒ|[ƒ‹‚ÉƒvƒŒƒCƒ„[‚ªG‚ê‚Ä‚¢‚È‚¢ê‡‚ÌƒT[ƒNƒ‹‚ÌF<br>
+/// <param>PI</param>: ‰~ü—¦<br>
+/// <param>float radial</param>: ”¼Œa‚ğİ’èEæ“¾<br>
+/// <param>float Distance</param>: ˆÚ“®‹——£‚ğİ’èEæ“¾<br>
+/// <param>float angularVelocity</param>: Šp‘¬“x‚ğİ’èEæ“¾<br>
+/// <param>float cumulativeAngle</param>: —İÏŠp“x‚ğİ’èEæ“¾<br>
+/// <param>Vector2 posNow(float x, float y)</param>: À•W‚ğİ’èEæ“¾<br>
+/// <param>Vector2 posPrevious(float x, float y)</param>: ‘O‰ñ‚ÌÀ•W‚ğİ’èEæ“¾<br>
+/// <param>Vector2 posVectorEnd(float x, float y)</param>: ƒxƒNƒgƒ‹‚ÌI“_À•W‚ğİ’èEæ“¾<br>
+/// Ql•¶Œ£ : ‚È‚µ<br>
+/// ’ˆÓ     : ‚È‚µ
 class CircleManager {
 public:
-    //bool hit = false;           // æ¥è§¦ã—ã¦ã„ã‚‹ã‹ã©ã†ã‹
-    float radial;               // åŠå¾„
-    float distance = 0;         // ç§»å‹•è·é›¢
-    float angularVelocity = 0;  // è§’é€Ÿåº¦
-    float cumulativeAngle = 0;  // ç´¯ç©è§’åº¦
-    Vector2 posNow;             // åº§æ¨™
-    Vector2 posPrevious;        // å‰å›ã®åº§æ¨™
-    Vector2 posVectorEnd;       // ãƒ™ã‚¯ãƒˆãƒ«ã®çµ‚ç‚¹åº§æ¨™
+    //bool hit = false;           // ÚG‚µ‚Ä‚¢‚é‚©‚Ç‚¤‚©
+    float radial;               // ”¼Œa
+    float distance = 0;         // ˆÚ“®‹——£
+    float angularVelocity = 0;  // Šp‘¬“x
+    float cumulativeAngle = 0;  // —İÏŠp“x
+    Vector2 posNow;             // À•W
+    Vector2 posPrevious;        // ‘O‰ñ‚ÌÀ•W
+    Vector2 posVectorEnd;       // ƒxƒNƒgƒ‹‚ÌI“_À•W
 
-    // ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ã¨ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+    // ƒRƒ“ƒXƒgƒ‰ƒNƒ^‚ÆƒfƒXƒgƒ‰ƒNƒ^
     CircleManager(Vector2 pos, float r) : posNow(pos), radial(r) {
         cout << "calling constructor." << endl;
     }

@@ -13,28 +13,28 @@
 #include "Vector.h"
 using namespace std;
 
-// ##### ãƒ©ãƒ³ãƒ€ãƒ ãªå€¤ã‚’è¿”å´ã™ã‚‹é–¢æ•° #####
-// å‚è€ƒæ–‡çŒ® : http://vivi.dyndns.org/tech/cpp/random.html
-// å¼•æ•°     : min, max
-// æˆ»ã‚Šå€¤   : minä»¥ä¸Šmaxä»¥ä¸‹ã®ãƒ©ãƒ³ãƒ€ãƒ ãªå€¤
-// æ³¨æ„     : randomé–¢æ•°ã‚’ä½¿ç”¨ã™ã‚‹ãŸã‚ã€randomã‚’ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰ã™ã‚‹å¿…è¦ãŒã‚ã‚‹
+// ##### ƒ‰ƒ“ƒ_ƒ€‚È’l‚ğ•Ô‹p‚·‚éŠÖ” #####
+// Ql•¶Œ£ : http://vivi.dyndns.org/tech/cpp/random.html
+// ˆø”     : min, max
+// –ß‚è’l   : minˆÈãmaxˆÈ‰º‚Ìƒ‰ƒ“ƒ_ƒ€‚È’l
+// ’ˆÓ     : randomŠÖ”‚ğg—p‚·‚é‚½‚ßArandom‚ğƒCƒ“ƒNƒ‹[ƒh‚·‚é•K—v‚ª‚ ‚é
 [[maybe_unused]]
 int random(int min, int max) {
-    random_device rnd;     // éæ±ºå®šçš„ãªä¹±æ•°ç”Ÿæˆå™¨ã‚’ç”Ÿæˆ
-    mt19937 mt(rnd());     //  ãƒ¡ãƒ«ã‚»ãƒ³ãƒŒãƒ»ãƒ„ã‚¤ã‚¹ã‚¿ã®32ãƒ“ãƒƒãƒˆç‰ˆã€å¼•æ•°ã¯åˆæœŸã‚·ãƒ¼ãƒ‰å€¤
-    uniform_int_distribution<> rand100(min, max); // ç¯„å›²æŒ‡å®šã®ä¹±æ•°
-    // ãƒ©ãƒ³ãƒ€ãƒ ãªå€¤ã‚’è¿”å´ã™ã‚‹
+    random_device rnd;     // ”ñŒˆ’è“I‚È—”¶¬Ší‚ğ¶¬
+    mt19937 mt(rnd());     //  ƒƒ‹ƒZƒ“ƒkEƒcƒCƒXƒ^‚Ì32ƒrƒbƒg”ÅAˆø”‚Í‰ŠúƒV[ƒh’l
+    uniform_int_distribution<> rand100(min, max); // ”ÍˆÍw’è‚Ì—”
+    // ƒ‰ƒ“ƒ_ƒ€‚È’l‚ğ•Ô‹p‚·‚é
     return rand100(mt);
 }
 
-// ##### ãƒ™ã‚¯ãƒˆãƒ«ã®åŠ ç®— #####
-// å‚è€ƒæ–‡çŒ® : ãªã—
-// å¼•æ•°     : V1, V2
-// æˆ»ã‚Šå€¤   : åŠ ç®—ã—ãŸVector2
-// æ³¨æ„     : ãªã—
+// ##### ƒxƒNƒgƒ‹‚Ì‰ÁZ #####
+// Ql•¶Œ£ : ‚È‚µ
+// ˆø”     : V1, V2
+// –ß‚è’l   : ‰ÁZ‚µ‚½Vector2
+// ’ˆÓ     : ‚È‚µ
 [[maybe_unused]]
 Vector2 addVector(const Vector2& V1, const Vector2& V2) {
-    // åŠ ç®—ã—ãŸãƒ™ã‚¯ãƒˆãƒ«ã‚’è¨ˆç®—
+    // ‰ÁZ‚µ‚½ƒxƒNƒgƒ‹‚ğŒvZ
     Vector2 Result = {
             V1.x + V2.x,
             V1.y + V2.y
@@ -42,14 +42,14 @@ Vector2 addVector(const Vector2& V1, const Vector2& V2) {
     return Result;
 }
 
-// ##### ãƒ™ã‚¯ãƒˆãƒ«ã®æ¸›ç®— #####
-// å‚è€ƒæ–‡çŒ® : ãªã—
-// å¼•æ•°     : V1, V2
-// æˆ»ã‚Šå€¤   : æ¸›ç®—ã—ãŸVector2
-// æ³¨æ„     : ãªã—
+// ##### ƒxƒNƒgƒ‹‚ÌŒ¸Z #####
+// Ql•¶Œ£ : ‚È‚µ
+// ˆø”     : V1, V2
+// –ß‚è’l   : Œ¸Z‚µ‚½Vector2
+// ’ˆÓ     : ‚È‚µ
 [[maybe_unused]]
 Vector2 subVector(const Vector2& V1, const Vector2& V2) {
-    // æ¸›ç®—ã—ãŸãƒ™ã‚¯ãƒˆãƒ«ã‚’è¨ˆç®—
+    // Œ¸Z‚µ‚½ƒxƒNƒgƒ‹‚ğŒvZ
     Vector2 Result = {
             V1.x - V2.x,
             V1.y - V2.y
@@ -57,14 +57,14 @@ Vector2 subVector(const Vector2& V1, const Vector2& V2) {
     return Result;
 }
 
-// ##### ãƒ™ã‚¯ãƒˆãƒ«ã®ä¹—ç®— #####
-// å‚è€ƒæ–‡çŒ® : ãªã—
-// å¼•æ•°     : V1, V2
-// æˆ»ã‚Šå€¤   : ä¹—ç®—ã—ãŸãƒ™ã‚¯ãƒˆãƒ«
-// æ³¨æ„     : ãªã—
+// ##### ƒxƒNƒgƒ‹‚ÌæZ #####
+// Ql•¶Œ£ : ‚È‚µ
+// ˆø”     : V1, V2
+// –ß‚è’l   : æZ‚µ‚½ƒxƒNƒgƒ‹
+// ’ˆÓ     : ‚È‚µ
 [[maybe_unused]]
 Vector2 mulVector(const Vector2& V1, const Vector2& V2) {
-    // ä¹—ç®—ã—ãŸãƒ™ã‚¯ãƒˆãƒ«ã‚’è¨ˆç®—
+    // æZ‚µ‚½ƒxƒNƒgƒ‹‚ğŒvZ
     Vector2 Result = {
             V1.x * V2.x,
             V1.y * V2.y
@@ -72,14 +72,14 @@ Vector2 mulVector(const Vector2& V1, const Vector2& V2) {
     return Result;
 }
 
-// ##### ãƒ™ã‚¯ãƒˆãƒ«ã®é™¤ç®— #####
-// å‚è€ƒæ–‡çŒ® : ãªã—
-// å¼•æ•°     : V1, V2
-// æˆ»ã‚Šå€¤   : é™¤ç®—ã—ãŸãƒ™ã‚¯ãƒˆãƒ«
-// æ³¨æ„     : ãªã—
+// ##### ƒxƒNƒgƒ‹‚ÌœZ #####
+// Ql•¶Œ£ : ‚È‚µ
+// ˆø”     : V1, V2
+// –ß‚è’l   : œZ‚µ‚½ƒxƒNƒgƒ‹
+// ’ˆÓ     : ‚È‚µ
 [[maybe_unused]]
 Vector2 divVector(const Vector2& V1, const Vector2& V2) {
-    // é™¤ç®—ã—ãŸãƒ™ã‚¯ãƒˆãƒ«ã‚’è¨ˆç®—
+    // œZ‚µ‚½ƒxƒNƒgƒ‹‚ğŒvZ
     Vector2 Result = {
             V1.x / V2.x,
             V1.y / V2.y
@@ -87,84 +87,84 @@ Vector2 divVector(const Vector2& V1, const Vector2& V2) {
     return Result;
 }
 
-// ##### å¤–ç©è¨ˆç®—é–¢æ•° #####
-// å‚è€ƒæ–‡çŒ® : ã‚²ãƒ¼ãƒ ã‚¢ãƒ«ã‚´ãƒªã‚ºãƒ  Z07 7ãƒšãƒ¼ã‚¸ç›®è³‡æ–™
-// å¼•æ•°     : x1, y1, x2, y2
-// æˆ»ã‚Šå€¤   : å¤–ç©è¨ˆç®—ã•ã‚ŒãŸfloatå€¤
-// æ³¨æ„     : ãªã—
+// ##### ŠOÏŒvZŠÖ” #####
+// Ql•¶Œ£ : ƒQ[ƒ€ƒAƒ‹ƒSƒŠƒYƒ€ Z07 7ƒy[ƒW–Ú‘—¿
+// ˆø”     : x1, y1, x2, y2
+// –ß‚è’l   : ŠOÏŒvZ‚³‚ê‚½float’l
+// ’ˆÓ     : ‚È‚µ
 [[maybe_unused]]
 float crossProduct(const Vector2& V1, const Vector2& V2) {
     return V1.x * V2.y - V1.y * V2.x;
 }
 
-// ##### å†…ç©è¨ˆç®—é–¢æ•° #####
-// å‚è€ƒæ–‡çŒ® : ã‚²ãƒ¼ãƒ ã‚¢ãƒ«ã‚´ãƒªã‚ºãƒ  Z07 12ãƒšãƒ¼ã‚¸ç›®è³‡æ–™
-// å¼•æ•°     : Vector2 V1, Vector2 V2
-// æˆ»ã‚Šå€¤   : å†…ç©è¨ˆç®—ã•ã‚ŒãŸfloatå€¤
-// æ³¨æ„     : ãªã—
+// ##### “àÏŒvZŠÖ” #####
+// Ql•¶Œ£ : ƒQ[ƒ€ƒAƒ‹ƒSƒŠƒYƒ€ Z07 12ƒy[ƒW–Ú‘—¿
+// ˆø”     : Vector2 V1, Vector2 V2
+// –ß‚è’l   : “àÏŒvZ‚³‚ê‚½float’l
+// ’ˆÓ     : ‚È‚µ
 [[maybe_unused]]
 float dotProduct(const Vector2& V1, const Vector2& V2) {
     return V1.x * V2.x + V1.y * V2.y;
 }
 
-// ##### ç›¸å¯¾ãƒ™ã‚¯ã‚¿ãƒ¼è¨ˆç®—é–¢æ•° #####
-// å‚è€ƒæ–‡çŒ® : ã‚²ãƒ¼ãƒ ã‚¢ãƒ«ã‚´ãƒªã‚ºãƒ  Z07 7ãƒšãƒ¼ã‚¸ç›®è³‡æ–™
-// å¼•æ•°     : x1, y1, x2, y2
-// æˆ»ã‚Šå€¤   : ç›¸å¯¾ãƒ™ã‚¯ã‚¿ãƒ¼
-// æ³¨æ„     : ãªã—
+// ##### ‘Š‘ÎƒxƒNƒ^[ŒvZŠÖ” #####
+// Ql•¶Œ£ : ƒQ[ƒ€ƒAƒ‹ƒSƒŠƒYƒ€ Z07 7ƒy[ƒW–Ú‘—¿
+// ˆø”     : x1, y1, x2, y2
+// –ß‚è’l   : ‘Š‘ÎƒxƒNƒ^[
+// ’ˆÓ     : ‚È‚µ
 [[maybe_unused]]
 Vector2 relative(const Vector2& V1, const Vector2& V2) {
-    // 2ã¤ã®å††ã®ä¸­å¿ƒåº§æ¨™ã®å·®åˆ†ã‚’è¨ˆç®—ï¼ˆç›¸å¯¾ãƒ™ã‚¯ãƒˆãƒ«ï¼‰
-    return {V1.x - V1.y, V2.x - V2.y}; // ç›®çš„ã®åœ°ç‚¹ - ç¾åœ¨ã®åœ°ç‚¹
+    // 2‚Â‚Ì‰~‚Ì’†SÀ•W‚Ì·•ª‚ğŒvZi‘Š‘ÎƒxƒNƒgƒ‹j
+    return {V1.x - V1.y, V2.x - V2.y}; // –Ú“I‚Ì’n“_ - Œ»İ‚Ì’n“_
 }
 
-// ##### 2ã¤ã®å††ã®ä¸­å¿ƒåº§æ¨™(Vector)ã®è·é›¢ã‚’è¨ˆç®—ã™ã‚‹é–¢æ•° #####
-// å‚è€ƒæ–‡çŒ® : https://www.geisya.or.jp/~mwm48961/math/distance1j.htm
-// å¼•æ•°     : Vector2 V1, Vector2 V2
-// æˆ»ã‚Šå€¤   : 2ã¤ã®å††ã®ä¸­å¿ƒåº§æ¨™ã®è·é›¢
-// æ³¨æ„     : sqrté–¢æ•°ã‚’ä½¿ç”¨ã™ã‚‹ãŸã‚ã€math.h or cmathã‚’ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰ã™ã‚‹å¿…è¦ãŒã‚ã‚‹
+// ##### 2‚Â‚Ì‰~‚Ì’†SÀ•W(Vector)‚Ì‹——£‚ğŒvZ‚·‚éŠÖ” #####
+// Ql•¶Œ£ : https://www.geisya.or.jp/~mwm48961/math/distance1j.htm
+// ˆø”     : Vector2 V1, Vector2 V2
+// –ß‚è’l   : 2‚Â‚Ì‰~‚Ì’†SÀ•W‚Ì‹——£
+// ’ˆÓ     : sqrtŠÖ”‚ğg—p‚·‚é‚½‚ßAmath.h or cmath‚ğƒCƒ“ƒNƒ‹[ƒh‚·‚é•K—v‚ª‚ ‚é
 [[maybe_unused]]
 float getVectorDistance(const Vector2& V1, const Vector2& V2) {
-    // 2ã¤ã®å††ã®ä¸­å¿ƒåº§æ¨™ã®å·®åˆ†ã‚’è¨ˆç®—ï¼ˆç›¸å¯¾ãƒ™ã‚¯ãƒˆãƒ«ï¼‰
-    Vector2 diff = subVector(V1, V2); // ç›®çš„ã®åœ°ç‚¹ - ç¾åœ¨ã®åœ°ç‚¹
-    // 2ã¤ã®å††ã®ä¸­å¿ƒåº§æ¨™ã®è·é›¢ã‚’è¨ˆç®—
+    // 2‚Â‚Ì‰~‚Ì’†SÀ•W‚Ì·•ª‚ğŒvZi‘Š‘ÎƒxƒNƒgƒ‹j
+    Vector2 diff = subVector(V1, V2); // –Ú“I‚Ì’n“_ - Œ»İ‚Ì’n“_
+    // 2‚Â‚Ì‰~‚Ì’†SÀ•W‚Ì‹——£‚ğŒvZ
     return sqrtf(powf(diff.x, 2) + powf(diff.y, 2));
 }
 
-// ##### 2ã¤ã®å††ã®ä¸­å¿ƒåº§æ¨™(Vector)ã®è·é›¢ã‚’è¨ˆç®—ã—ã¦ç¬¦å·ã«ã‚ˆã£ã¦è¿”ã™å€¤ã‚’å¤‰ãˆã‚‹é–¢æ•° #####
-// å‚è€ƒæ–‡çŒ® : ãªã—
-// å¼•æ•°     : Vector2 V1, Vector2 V2
-// æˆ»ã‚Šå€¤   : 2ã¤ã®ãƒã‚¤ãƒ³ãƒˆé–“ã®è·é›¢(float)
-// æ³¨æ„     : sqrté–¢æ•°ã‚’ä½¿ç”¨ã™ã‚‹ãŸã‚ã€math.h or cmathã‚’ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰ã™ã‚‹å¿…è¦ãŒã‚ã‚‹
+// ##### 2‚Â‚Ì‰~‚Ì’†SÀ•W(Vector)‚Ì‹——£‚ğŒvZ‚µ‚Ä•„†‚É‚æ‚Á‚Ä•Ô‚·’l‚ğ•Ï‚¦‚éŠÖ” #####
+// Ql•¶Œ£ : ‚È‚µ
+// ˆø”     : Vector2 V1, Vector2 V2
+// –ß‚è’l   : 2‚Â‚Ìƒ|ƒCƒ“ƒgŠÔ‚Ì‹——£(float)
+// ’ˆÓ     : sqrtŠÖ”‚ğg—p‚·‚é‚½‚ßAmath.h or cmath‚ğƒCƒ“ƒNƒ‹[ƒh‚·‚é•K—v‚ª‚ ‚é
 [[maybe_unused]]
 float getVectorDistanceSign(const Vector2& V1, const Vector2& V2) {
-    // 2ã¤ã®å††ã®ä¸­å¿ƒåº§æ¨™ã®å·®åˆ†ã‚’è¨ˆç®—ï¼ˆç›¸å¯¾ãƒ™ã‚¯ãƒˆãƒ«ï¼‰
-    Vector2 diff = subVector(V1, V2); // ç›®çš„ã®åœ°ç‚¹ - ç¾åœ¨ã®åœ°ç‚¹
-    // 2ã¤ã®å††ã®ä¸­å¿ƒåº§æ¨™ã®è·é›¢ã‚’è¨ˆç®—
+    // 2‚Â‚Ì‰~‚Ì’†SÀ•W‚Ì·•ª‚ğŒvZi‘Š‘ÎƒxƒNƒgƒ‹j
+    Vector2 diff = subVector(V1, V2); // –Ú“I‚Ì’n“_ - Œ»İ‚Ì’n“_
+    // 2‚Â‚Ì‰~‚Ì’†SÀ•W‚Ì‹——£‚ğŒvZ
     return sqrtf(powf(diff.x, 2) + powf(diff.y, 2)) * (diff.x < 0.0F ? 1.0F : -1.0F);
 }
 
-// ##### ç›¸å¯¾ãƒ™ã‚¯ã‚¿ãƒ¼ã®é•·ã•ã‚’è¨ˆç®—ã™ã‚‹é–¢æ•° #####
-// å‚è€ƒæ–‡çŒ® : ãªã—
-// å¼•æ•°     : Vector2 V1
-// æˆ»ã‚Šå€¤   : ç›¸å¯¾ãƒ™ã‚¯ã‚¿ãƒ¼ã®é•·ã•
-// æ³¨æ„     : sqrté–¢æ•°ã‚’ä½¿ç”¨ã™ã‚‹ãŸã‚ã€math.h or cmathã‚’ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰ã™ã‚‹å¿…è¦ãŒã‚ã‚‹
+// ##### ‘Š‘ÎƒxƒNƒ^[‚Ì’·‚³‚ğŒvZ‚·‚éŠÖ” #####
+// Ql•¶Œ£ : ‚È‚µ
+// ˆø”     : Vector2 V1
+// –ß‚è’l   : ‘Š‘ÎƒxƒNƒ^[‚Ì’·‚³
+// ’ˆÓ     : sqrtŠÖ”‚ğg—p‚·‚é‚½‚ßAmath.h or cmath‚ğƒCƒ“ƒNƒ‹[ƒh‚·‚é•K—v‚ª‚ ‚é
 [[maybe_unused]]
 float getVectorLength(const Vector2& V1) {
-    // ç›¸å¯¾ãƒ™ã‚¯ãƒˆãƒ«ã®è¨ˆç®—
+    // ‘Š‘ÎƒxƒNƒgƒ‹‚ÌŒvZ
     Vector2 relativeVector = mulVector(V1, V1);
-    // ç›¸å¯¾ãƒ™ã‚¯ãƒˆãƒ«ã®é•·ã•ã‚’è¨ˆç®—
+    // ‘Š‘ÎƒxƒNƒgƒ‹‚Ì’·‚³‚ğŒvZ
     return sqrtf(relativeVector.x + relativeVector.y);
 }
 
-// ##### ç›¸å¯¾ãƒ™ã‚¯ã‚¿ãƒ¼æ­£è¦åŒ– #####
-// å‚è€ƒæ–‡çŒ® : ã‚²ãƒ¼ãƒ ã‚¢ãƒ«ã‚´ãƒªã‚ºãƒ  Z07 7ãƒšãƒ¼ã‚¸ç›®è³‡æ–™
-// å¼•æ•°     : V1
-// æˆ»ã‚Šå€¤   : ç›¸å¯¾åŒ–ã•ã‚ŒãŸVector2
-// æ³¨æ„     : ãªã—
+// ##### ‘Š‘ÎƒxƒNƒ^[³‹K‰» #####
+// Ql•¶Œ£ : ƒQ[ƒ€ƒAƒ‹ƒSƒŠƒYƒ€ Z07 7ƒy[ƒW–Ú‘—¿
+// ˆø”     : V1
+// –ß‚è’l   : ‘Š‘Î‰»‚³‚ê‚½Vector2
+// ’ˆÓ     : ‚È‚µ
 [[maybe_unused]]
 static Vector2 normalized(const Vector2& V1) {
-    // æ­£è¦åŒ–ã—ãŸç›¸å¯¾ãƒ™ã‚¯ãƒˆãƒ«ã‚’è¨ˆç®—
+    // ³‹K‰»‚µ‚½‘Š‘ÎƒxƒNƒgƒ‹‚ğŒvZ
     Vector2 Result = {
             V1.x / sqrtf((V1.x * V1.x) + (V1.y * V1.y)),
             V1.y / sqrtf((V1.x * V1.x) + (V1.y * V1.y))
@@ -172,26 +172,26 @@ static Vector2 normalized(const Vector2& V1) {
     return Result;
 }
 
-// ##### å†…ç©ã¨å¤–ç©ã‚’è¨ˆç®—ã—ã¦ç‚¹ã¨ç‚¹ã®é–“ã ã£ãŸã‚‰trueã‚’è¿”ã™ #####
-// å‚è€ƒæ–‡çŒ® : ãªã—
-// å¼•æ•°     : Vector2 ç¾åœ¨ã®åº§æ¨™, Vector2 åœ°ç‚¹A, Vector2 åœ°ç‚¹B
-// æˆ»ã‚Šå€¤   : ç‚¹ã¨ç‚¹ã®é–“ã ã£ãŸã‚‰trueã€ãã†ã§ãªã„å ´åˆã¯false
-// æ³¨æ„     : ãªã—
+// ##### “àÏ‚ÆŠOÏ‚ğŒvZ‚µ‚Ä“_‚Æ“_‚ÌŠÔ‚¾‚Á‚½‚çtrue‚ğ•Ô‚· #####
+// Ql•¶Œ£ : ‚È‚µ
+// ˆø”     : Vector2 Œ»İ‚ÌÀ•W, Vector2 ’n“_A, Vector2 ’n“_B
+// –ß‚è’l   : “_‚Æ“_‚ÌŠÔ‚¾‚Á‚½‚çtrueA‚»‚¤‚Å‚È‚¢ê‡‚Ífalse
+// ’ˆÓ     : ‚È‚µ
 [[maybe_unused]]
 bool pointBetween(const Vector2& posV, const Vector2& V1, const Vector2& V2) {
-    // ç‚¹ã¨ç‚¹ã®é–“ã‹ã©ã†ã‹ã‚’åˆ¤å®šã™ã‚‹
-    // 2ã¤ã®å††ã®ä¸­å¿ƒåº§æ¨™ã®å·®åˆ†ã‚’è¨ˆç®—ï¼ˆç›¸å¯¾ãƒ™ã‚¯ãƒˆãƒ«ï¼‰
-    // ç›®çš„ã®åœ°ç‚¹ - ç¾åœ¨ã®åœ°ç‚¹
-    Vector2 Vs1 = subVector(V2, V1);     // ç·šåˆ†ã®ãƒ™ã‚¯ãƒˆãƒ«
-    Vector2 Vs2 = subVector(posV, V1);   // ç‚¹ã¨ç·šåˆ†ã®å§‹ç‚¹ã®ãƒ™ã‚¯ãƒˆãƒ«
-    Vector2 Vs3 = subVector(V1, V2);     // ç·šåˆ†ã®ãƒ™ã‚¯ãƒˆãƒ«
-    Vector2 Vs4 = subVector(posV, V2);   // ç‚¹ã¨ç·šåˆ†ã®çµ‚ç‚¹ã®ãƒ™ã‚¯ãƒˆãƒ«
-    float   Vd1 = dotProduct(Vs1, Vs2);  // å†…ç©
-    float   Vd2 = dotProduct(Vs3, Vs4);  // å†…ç©
-    Vector2 Vn  = normalized(Vs1);       // æ­£è¦åŒ–
-    float   Vc  = crossProduct(Vn, Vs2); // å¤–ç©
+    // “_‚Æ“_‚ÌŠÔ‚©‚Ç‚¤‚©‚ğ”»’è‚·‚é
+    // 2‚Â‚Ì‰~‚Ì’†SÀ•W‚Ì·•ª‚ğŒvZi‘Š‘ÎƒxƒNƒgƒ‹j
+    // –Ú“I‚Ì’n“_ - Œ»İ‚Ì’n“_
+    Vector2 Vs1 = subVector(V2, V1);     // ü•ª‚ÌƒxƒNƒgƒ‹
+    Vector2 Vs2 = subVector(posV, V1);   // “_‚Æü•ª‚Ìn“_‚ÌƒxƒNƒgƒ‹
+    Vector2 Vs3 = subVector(V1, V2);     // ü•ª‚ÌƒxƒNƒgƒ‹
+    Vector2 Vs4 = subVector(posV, V2);   // “_‚Æü•ª‚ÌI“_‚ÌƒxƒNƒgƒ‹
+    float   Vd1 = dotProduct(Vs1, Vs2);  // “àÏ
+    float   Vd2 = dotProduct(Vs3, Vs4);  // “àÏ
+    Vector2 Vn  = normalized(Vs1);       // ³‹K‰»
+    float   Vc  = crossProduct(Vn, Vs2); // ŠOÏ
 
-    // ç‚¹ã¨ç‚¹ã®é–“ã«ä¾µå…¥ã—ã¦ããŸã‚‰trueã‚’è¿”ã™
+    // “_‚Æ“_‚ÌŠÔ‚ÉN“ü‚µ‚Ä‚«‚½‚çtrue‚ğ•Ô‚·
     if (Vd1 > 0 && Vd2 > 0 && Vc >= 1) {
         return true;
     }
@@ -199,32 +199,32 @@ bool pointBetween(const Vector2& posV, const Vector2& V1, const Vector2& V2) {
     return false;
 }
 
-// åˆ¤å®šå‡¦ç†ã‚’å…±é€šåŒ–
+// ”»’èˆ—‚ğ‹¤’Ê‰»
 [[maybe_unused]]
 Vector2 findDistance(const Vector2& V1, const Vector2& V2) {
-    // ç›¸å¯¾ãƒ™ã‚¯ãƒˆãƒ«ã‚’æ­£è¦åŒ–
+    // ‘Š‘ÎƒxƒNƒgƒ‹‚ğ³‹K‰»
     Vector2 relativeVector = {
         (V1.x - V2.x) / getVectorDistance (V1, V2),
         (V1.y - V2.y) / getVectorDistance (V1, V2)
     };
 
-    // ä¸­å¤®ç‰©ä½“ï¼ˆçƒä½“ï¼‰ã®é€²è¡Œæ–¹å‘ãƒ™ã‚¯ãƒˆãƒ«ã‚’è¿”å´
+    // ’†‰›•¨‘Ìi‹…‘Ìj‚Ìis•ûŒüƒxƒNƒgƒ‹‚ğ•Ô‹p
     return { relativeVector.y, -relativeVector.x };
 }
 
-// å½“ãŸã‚Šåˆ¤å®š
+// “–‚½‚è”»’è
 [[maybe_unused]]
 bool hitCheck(const Vector2& V1, const float& V1R, const Vector2& V2, const float& V2R) {
-    // 2ã¤ã®å††ã®ä¸­å¿ƒåº§æ¨™ã®è·é›¢ã‚’è¨ˆç®—
+    // 2‚Â‚Ì‰~‚Ì’†SÀ•W‚Ì‹——£‚ğŒvZ
     float distance = getVectorDistance(V1, V2);
-    // 2ã¤ã®å††ã®åŠå¾„ã®å’Œã‚’è¨ˆç®—
+    // 2‚Â‚Ì‰~‚Ì”¼Œa‚Ì˜a‚ğŒvZ
     float sumR = V1R + V2R;
-    // 2ã¤ã®å††ã®ä¸­å¿ƒåº§æ¨™ã®è·é›¢ãŒ2ã¤ã®å††ã®åŠå¾„ã®å’Œã‚ˆã‚Šå°ã•ã‹ã£ãŸã‚‰
+    // 2‚Â‚Ì‰~‚Ì’†SÀ•W‚Ì‹——£‚ª2‚Â‚Ì‰~‚Ì”¼Œa‚Ì˜a‚æ‚è¬‚³‚©‚Á‚½‚ç
     if (distance < sumR) {
-        // å½“ãŸã£ã¦ã„ã‚‹
+        // “–‚½‚Á‚Ä‚¢‚é
         return true;
     }
-    // å½“ãŸã£ã¦ã„ãªã„
+    // “–‚½‚Á‚Ä‚¢‚È‚¢
     return false;
 }
 

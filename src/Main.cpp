@@ -1,43 +1,44 @@
-// ä»¥ä¸‹ã®è¡ŒãŒãªã„ã¨ã‚³ãƒ³ãƒ‘ã‚¤ãƒ«ãŒé€šã‚Šã¾ã›ã‚“
+// ˆÈ‰º‚Ìs‚ª‚È‚¢‚ÆƒRƒ“ƒpƒCƒ‹‚ª’Ê‚è‚Ü‚¹‚ñ
 #pragma comment(linker, "/subsystem:windows")
 
-//## ç’°å¢ƒã«å¿œã˜ã¦è¨­å®š
-using namespace std; // stdåå‰ç©ºé–“ã‚’ä½¿ç”¨
-#include "DxLib.h"   // DXãƒ©ã‚¤ãƒ–ãƒ©ãƒª
-#include "Vector.h"  // ãƒ™ã‚¯ãƒˆãƒ«ã‚¯ãƒ©ã‚¹
-#include "Circle.h"  // å††ã‚¯ãƒ©ã‚¹
-#include "Utils.h"   // ãƒ¦ãƒ¼ãƒ†ã‚£ãƒªãƒ†ã‚£ (ç§˜ä¼ã®ã‚¿ãƒ¬)
-#include "Option.h"  // ãã®ä»–è¨­å®š
+//## ŠÂ‹«‚É‰‚¶‚Äİ’è
+using namespace std; // std–¼‘O‹óŠÔ‚ğg—p
+#include "DxLib.h"   // DXƒ‰ƒCƒuƒ‰ƒŠ
+#include "Vector.h"  // ƒxƒNƒgƒ‹ƒNƒ‰ƒX
+#include "Circle.h"  // ‰~ƒNƒ‰ƒX
+#include "Utils.h"   // ƒ†[ƒeƒBƒŠƒeƒB (”é“`‚Ìƒ^ƒŒ)
+#include "Option.h"  // ‚»‚Ì‘¼İ’è
 
-// ãƒ—ãƒ­ã‚°ãƒ©ãƒ ã®æœ€åˆã¯WinMainã§å§‹ã‚ã‚‹
+// ƒvƒƒOƒ‰ƒ€‚ÌÅ‰‚ÍWinMain‚Ån‚ß‚é
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow) {
-    //##### åˆæœŸè¨­å®š #####//
-    ChangeWindowMode(TRUE); // ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒ¢ãƒ¼ãƒ‰è¨­å®š
-    SetGraphMode(WIDTH, HEIGHT, 32); // ç”»é¢ã‚µã‚¤ã‚ºè¨­å®š
-    SetWaitVSyncFlag(TRUE); // å‚ç›´åŒæœŸã‚’æœ‰åŠ¹ã«ã™ã‚‹
+    //##### ‰Šúİ’è #####//
+    ChangeWindowMode(TRUE); // ƒEƒBƒ“ƒhƒEƒ‚[ƒhİ’è
+    SetGraphMode(WIDTH, HEIGHT, 32); // ‰æ–ÊƒTƒCƒYİ’è
+    SetWaitVSyncFlag(TRUE); // ‚’¼“¯Šú‚ğ—LŒø‚É‚·‚é
 
-    // DXãƒ©ã‚¤ãƒ–ãƒ©ãƒªåˆæœŸåŒ–å‡¦ç†
+    // DXƒ‰ƒCƒuƒ‰ƒŠ‰Šú‰»ˆ—
     if(DxLib_Init() == -1) {
-        return -1; // ã‚¨ãƒ©ãƒ¼ãŒèµ·ããŸã‚‰ç›´ã¡ã«çµ‚äº†
+        return -1; // ƒGƒ‰[‚ª‹N‚«‚½‚ç’¼‚¿‚ÉI—¹
     }
 
-    // å††ã®åˆæœŸåŒ–
+    float firstArmLength = 100.0F;     // ‘æˆêŠÖß‚Ì’·‚³
+    float secondArmLength = 50.0F;     // ‘æ“ñŠÖß‚Ì’·‚³
+
+    // ‰~‚Ì‰Šú‰»
+    // 0: Œ´“_, 1: n“_, 2: ––’[
     CircleManager circle[3] {
-        CircleManager(Vector2(WIDTH / 2.0F, HEIGHT / 2.0F), 25),
-        CircleManager(Vector2(WIDTH / 2.0F + 100.0F, HEIGHT / 2.0F - 50.0F), 25),
-        CircleManager(Vector2(WIDTH / 2.0F + 150.0F, HEIGHT / 2.0F), 25)
+        CircleManager(Vector2(WIDTH / 2.0F, HEIGHT / 2.0F), 15),
+        CircleManager(Vector2(WIDTH / 2.0F + 70.0F,  HEIGHT / 2.0F + 30.0F), 15),
+        CircleManager(Vector2(WIDTH / 2.0F + 100.0F, HEIGHT / 2.0F + 45.0F), 15)
     };
 
-    //##### ãƒ¡ã‚¤ãƒ³ãƒ«ãƒ¼ãƒ—ï¼ˆæç”»å‡¦ç†ï¼‰ #####//
+    //##### ƒƒCƒ“ƒ‹[ƒvi•`‰æˆ—j #####//
     while(ProcessMessage() == 0) {
-        ClearDrawScreen(); // ç”»é¢ã®æ›´æ–°
+        ClearDrawScreen(); // ‰æ–Ê‚ÌXV
 
         printfDx("Hello World!\n\n");
 
-        // ä»Šæ“ä½œã—ã¦ã„ã‚‹å††ã®éå»åº§æ¨™ã«ç¾åœ¨åº§æ¨™ã‚’æ›¸ãè¾¼ã‚€
-        circle[2].posPrevious = circle[2].posNow;
-
-        // ã‚­ãƒ¼ã«å…¥åŠ›ãŒã‚ã‚Œã°ç§»å‹•å‡¦ç†
+        // ƒL[‚É“ü—Í‚ª‚ ‚ê‚ÎˆÚ“®ˆ—
         // Up or W
         if(CheckHitKey(KEY_INPUT_UP) || CheckHitKey(KEY_INPUT_W)) {
             circle[2].posNow.y -= 5;
@@ -55,27 +56,60 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
             circle[2].posNow.x += 5;
         }
 
-        // ä»®ã§ã¾ãšã¯å††ã®åº§æ¨™ãŒè¦‹ãŸã„ã®ã§æç”»ã‚’ã—ã¦ãŠãã€‚
+        // ––’[‚Ì•â³‚ÆŠÖßŒvZ‚Ég—p‚·‚é•Ï”‚Ìæ“¾
+        Vector2 startAndEndArmPos = {
+            circle[2].posNow.x - circle[0].posNow.x,
+            circle[2].posNow.y - circle[0].posNow.y
+        };
+        float startAndEndLength = sqrtf(
+            startAndEndArmPos.x * startAndEndArmPos.x + startAndEndArmPos.y * startAndEndArmPos.y
+        );
+        Vector2 startAndEndLengthVector = {
+            startAndEndArmPos.x / startAndEndLength,
+            startAndEndArmPos.y / startAndEndLength
+        };
+
+        // —]Œ·’è—‚ğg—p‚µ‚ÄŠÖßˆÊ’u‚ğŒvZ‚·‚é
+        if (startAndEndLength > firstArmLength + secondArmLength) {
+            // ––’[‚ÌÀ•W‚ğ•â³‚·‚é
+            circle[2].posNow.x = circle[0].posNow.x + startAndEndLengthVector.x * (firstArmLength + secondArmLength);
+            circle[2].posNow.y = circle[0].posNow.y + startAndEndLengthVector.y * (firstArmLength + secondArmLength);
+        };
+
+        // ‘æˆêŠÖß‚ÌŠp“x‚ğŒvZ‚·‚é
+        float cosA = (firstArmLength * firstArmLength + startAndEndLength * startAndEndLength - secondArmLength * secondArmLength) / (2.0F * firstArmLength * startAndEndLength);
+        //circle 0‚©‚ç1‚É‘Î‚·‚é’PˆÊƒxƒNƒ^[‚ğæ“¾
+        Vector2 startAndEndArmPosUnit = {
+            startAndEndArmPos.x / startAndEndLength,
+            startAndEndArmPos.y / startAndEndLength
+        };
+        // CosA‚ÆSinA‚ğ—p‚¢‚ÄV1‚ğV2‚É‰ñ“]
+        Vector2 jointPos = {
+            circle[0].posNow.x + firstArmLength * (startAndEndArmPosUnit.x * cosA - startAndEndArmPosUnit.y * sqrtf(1.0F - cosA * cosA)),
+            circle[0].posNow.y + firstArmLength * (startAndEndArmPosUnit.x * sqrtf(1.0F - cosA * cosA) + startAndEndArmPosUnit.y * cosA)
+        };
+        // circle 0‚ÌÀ•W‚ÉV2'‚ğ‘«‚µ‚ÄV3‚ğì‚é
+        circle[1].posNow = jointPos;
+
+        // ‰¼‚Å‚Ü‚¸‚Í‰~‚ÌÀ•W‚ªŒ©‚½‚¢‚Ì‚Å•`‰æ‚ğ‚µ‚Ä‚¨‚­B
         for(int i = 0; i < COUNTOF(circle); i++) {
             DrawCircle(circle[i].posNow.x, circle[i].posNow.y, circle[i].radial, white, TRUE);
 
-            // ã¤ã„ã§ã«ãã®æ•°å€¤ã‚‚æç”»ã—ã¦ãŠã
+            // ‚Â‚¢‚Å‚É‚»‚Ì”’l‚à•`‰æ‚µ‚Ä‚¨‚­
             printfDx("circle[%d].posNow.x = %.2f\n", i, circle[i].posNow.x);
             printfDx("circle[%d].posNow.y = %.2f\n", i, circle[i].posNow.y);
         }
 
-        // å§‹ç‚¹ã¨ä¸­é–“ç‚¹ã®åº§æ¨™é–“ã‚’çµã¶ç·šã‚’æç”»
+        // n“_‚Æ’†ŠÔ“_‚ÌÀ•WŠÔ‚ğŒ‹‚Ôü‚ğ•`‰æ
         DrawLine(circle[0].posNow.x, circle[0].posNow.y, circle[1].posNow.x, circle[1].posNow.y, white);
-        // ä¸­é–“ç‚¹ã¨çµ‚ç‚¹ã®åº§æ¨™é–“ã‚’çµã¶ç·šã‚’æç”»
+        // ’†ŠÔ“_‚ÆI“_‚ÌÀ•WŠÔ‚ğŒ‹‚Ôü‚ğ•`‰æ
         DrawLine(circle[1].posNow.x, circle[1].posNow.y, circle[2].posNow.x, circle[2].posNow.y, white);
 
-        //Sleep(10); // é…å»¶ã•ã›ã‚‹
-
-        // ç”»é¢ã®æ›´æ–°ï¼ˆå¿…é ˆï¼‰
-        ScreenFlip(); // ç”»é¢ã‚’åè»¢ã•ã›ã‚‹å‡¦ç†
-        clsDx();      // ãƒ‡ãƒãƒƒã‚°ãƒ­ã‚°ç”»é¢ã‚’ã‚¯ãƒªã‚¢ã™ã‚‹å‡¦ç†
+        // ‰æ–Ê‚ÌXVi•K{j
+        ScreenFlip(); // ‰æ–Ê‚ğ”½“]‚³‚¹‚éˆ—
+        clsDx();      // ƒfƒoƒbƒOƒƒO‰æ–Ê‚ğƒNƒŠƒA‚·‚éˆ—
     }
 
-    DxLib_End(); // DX Libraryã®ä½¿ç”¨ã‚’çµ‚äº†ã™ã‚‹å‡¦ç†
-    return 0;    // ã‚½ãƒ•ãƒˆã‚’æ­£å¸¸çµ‚äº†
+    DxLib_End(); // DX Library‚Ìg—p‚ğI—¹‚·‚éˆ—
+    return 0;    // ƒ\ƒtƒg‚ğ³íI—¹
 }

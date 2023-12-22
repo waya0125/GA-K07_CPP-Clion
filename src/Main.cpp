@@ -91,6 +91,17 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
         // circle 0の座標にV2'を足してV3を作る
         circle[1].posNow = jointPos;
 
+        // もし末端が中心に行ったら、第一関節の位置を補正する
+        if (startAndEndLength < firstArmLength - secondArmLength) {
+            circle[1].posNow.x = circle[0].posNow.x + startAndEndLengthVector.x * firstArmLength;
+            circle[1].posNow.y = circle[0].posNow.y + startAndEndLengthVector.y * firstArmLength;
+        }
+        // また同様に端っこに行ったら、第一関節の位置を補正する
+        if (startAndEndLength > firstArmLength + secondArmLength) {
+            circle[1].posNow.x = circle[0].posNow.x + startAndEndLengthVector.x * firstArmLength;
+            circle[1].posNow.y = circle[0].posNow.y + startAndEndLengthVector.y * firstArmLength;
+        }
+
         // 仮でまずは円の座標が見たいので描画をしておく。
         for(int i = 0; i < COUNTOF(circle); i++) {
             DrawCircle(circle[i].posNow.x, circle[i].posNow.y, circle[i].radial, white, TRUE);
